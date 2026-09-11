@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lusona Hub has moved</title>
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="5;url=https://hub.lusona.org/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#0b1220; --fg:#e8eef8; --muted:#8b9bb3; --subtle:#6d7c94; --gold:#e2b657; --track:#1c2a42; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--fg); font-family: Outfit, system-ui, sans-serif; }
+    body { display: grid; place-items: center; padding: 2.5rem 1rem; }
+    .inner { width: min(36rem, 100%); text-align: center; }
+    .kicker { margin: 0; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .lock { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1rem; direction: ltr; }
+    .logo { height: 6rem; width: auto; }
+    .flag { height: 4rem; width: 6rem; }
+    h1 { margin: 1.5rem 0 0; font-family: Fraunces, Georgia, serif; font-size: clamp(2rem, 6vw, 3rem); font-weight: 600; }
+    .copy { margin: 1rem auto 0; max-width: 28rem; font-size: 1.05rem; line-height: 1.6; color: var(--muted); }
+    .foot { margin: .75rem 0 0; font-size: .85rem; color: var(--subtle); }
+    .track { margin: 2rem auto 0; width: min(20rem, 100%); height: 6px; border-radius: 999px; background: var(--track); overflow: hidden; }
+    .bar { height: 100%; width: 100%; background: var(--gold); transform-origin: left center; animation: bar 5s linear both; }
+    .open { margin: .75rem 0 0; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--subtle); }
+    .go { display: inline-grid; place-items: center; margin: 2rem 0 0; min-width: 11rem; height: 3rem; border-radius: 6px; background: var(--gold); color: var(--bg); font-size: .85rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
+    @keyframes bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @media (min-width: 640px) { .logo { height: 9rem; } .flag { height: 6rem; width: 9rem; } }
+  </style>
+</head>
+<body>
+  <div class="inner">
+    <p class="kicker">Lusona Hub</p>
+    <div class="lock">
+      <img class="logo" src="https://hub.lusona.org/channel/wings-logo.png" alt="Lusona Hub" />
+      <svg viewBox="0 0 60 40" class="flag" role="img" aria-label="Portugal">
+        <rect width="24" height="40" fill="#046a38"/>
+        <rect x="24" width="36" height="40" fill="#da291c"/>
+        <circle cx="24" cy="20" r="9" fill="#ffd200"/>
+        <circle cx="24" cy="20" r="7.2" fill="#c9a227"/>
+        <ellipse cx="24" cy="20" rx="6.6" ry="2.4" fill="none" stroke="#7a5b12" stroke-width="0.7"/>
+        <ellipse cx="24" cy="20" rx="2.4" ry="6.6" fill="none" stroke="#7a5b12" stroke-width="0.7"/>
+        <rect x="20.4" y="16.2" width="7.2" height="8.4" rx="0.6" fill="#f4f1ea"/>
+        <circle cx="24" cy="18.2" r="0.85" fill="#003399"/>
+        <circle cx="22.2" cy="20.4" r="0.85" fill="#003399"/>
+        <circle cx="25.8" cy="20.4" r="0.85" fill="#003399"/>
+        <circle cx="24" cy="20.6" r="0.7" fill="#003399"/>
+        <circle cx="24" cy="22.6" r="0.85" fill="#003399"/>
+      </svg>
+    </div>
+    <h1>Congratulations</h1>
+    <p class="copy">Lusona Hub has a new home. Please wait — we are taking you to hub.lusona.org.</p>
+    <p class="foot">From wingsofficial.top → hub.lusona.org</p>
+    <div class="track"><div class="bar"></div></div>
+    <p class="open">Opening in <span id="n">5</span>s</p>
+    <a class="go" href="https://hub.lusona.org/">Go now</a>
+  </div>
+  <script>
+    (function () {
+      var dest;
+      if (location.hostname === "wingsofficial.top" || location.hostname === "www.wingsofficial.top") {
+        dest = "https://hub.lusona.org" + location.pathname + location.search + location.hash;
+      } else {
+        dest = "https://hub.lusona.org/" + location.search + location.hash;
+      }
+      var hold = 5000;
+      var started = Date.now();
+      var n = document.getElementById("n");
+      setInterval(function () {
+        var left = Math.max(0, Math.ceil((hold - (Date.now() - started)) / 1000));
+        if (n) n.textContent = String(left);
+      }, 250);
+      setTimeout(function () { location.replace(dest); }, hold);
+    })();
+  </script>
+</body>
+</html>
